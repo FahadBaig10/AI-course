@@ -1,0 +1,140 @@
+Task-1
+Open the file words.py and complete task 1
+
+from urllib.request import urlopen
+story = urlopen('http://sixty-north.com/c/t.txt')
+story_words = []
+for line in story:
+    line_words = line.decode('utf-8').split()
+    for word in line_words:
+        story_words.append(word)
+        print(word)
+story.close()
+
+
+
+-------------------------------------------------------
+Task-2
+Pass: http://sixty-north.com
+As the cmd line arg to words2.py
+arg[0] is the module filename
+
+
+
+import sys
+from urllib.request import urlopen
+
+
+def fetch_words(url):
+    story = urlopen('http://sixty-north.com')
+    story_words = []
+    for line in story:
+        line_words = line.decode('utf8').split()
+        for word in line_words:
+            story_words.append(word)
+    story.close()
+    return story_words
+
+
+def print_items(items):
+    for item in items:
+        print(item)
+
+
+def main():
+    url = sys.argv[1]
+    words = fetch_words(url)
+    print_items(words)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+-------------------------------------------------------
+Task-3
+Create a list m with values 9, 15,24
+Define a function modify() that takes in a list and appends 39 to it then prints this list
+Now call the function modify() and pass the list to this function
+Print the original list m
+What is the difference in the list inside the function and outside the function
+
+m =[9,15,24]
+def modify(m):
+    m.append(39)
+    print(m)
+print(modify(m))        
+print(m)     
+
+
+
+-------------------------------------------------------
+Task-4
+Change the function such that the original list remains unchanged
+Original list = [14,23,37]
+Inside function = [14,23,37,40]
+Show that original list is not same as the list returned from the function using identity equivalence
+list1 = [14,23,37]
+
+def modify(list1):
+    list2=[]
+    for values in list1:
+        list2.append(values)
+    list2.append(40)   
+    return list2
+print(modify(list1))
+print(list1) 
+-------------------------------------------------------
+Task-5
+After knowing what you know about the objects as being references:
+Implement a swap function that is both executable and importable
+When it is executable we call it using python swap.py 3 4
+Here is my implementation:
+
+import sys
+def swap(a,b):
+    temp = a
+    a = b
+    b = temp
+    return (a,b)
+def main():
+    
+    a=sys.argv[1]
+    b=sys.argv[2]
+    x,y=swap(a,b)
+    print(x,y)
+if __name__ == '__main__':
+    main()
+
+
+1-At REPL import and run swap
+2- Executable mode
+import sys
+from urllib.request import urlopen
+
+
+def fetch_words(url):
+    story = urlopen(url)
+    story_words = []
+    for line in story:
+        line_words = line.decode('utf8').split()
+        for word in line_words:
+            story_words.append(word)
+    story.close()
+    return story_words
+
+def print_items(items):
+    for item in items:
+        print(item)
+
+
+def main(url):
+    words = fetch_words(url)
+    print_items(words)
+
+
+if __name__ == '__main__':
+    main(sys.argv[1])
+
